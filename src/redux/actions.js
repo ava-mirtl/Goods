@@ -1,10 +1,11 @@
-import { PRODUCTS_LOAD } from "./types";
+import { PRODUCTS_LOAD, GET_PAGE } from "./types";
 
-// export function decrementLikes(){
-//     return{
-//         type: DECREMENT
-//     }
-// }
+export function getPage(params){
+    return{
+        type: GET_PAGE,
+        page: params
+    }
+}
 
 
 export function productsLoad(){

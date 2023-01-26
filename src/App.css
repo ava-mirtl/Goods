@@ -1,0 +1,71 @@
+.main-box {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+}
+.main-box__container {
+  width: 80vw;
+  height: fit-content;
+  align-self: center;
+}
+.main-box__sort {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+.main-box__txt {
+  color: rgb(139, 139, 139);
+}
+.sort__container {
+  width: 70vw;
+  max-width: 650px;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.search {
+  display: inline-flex;
+  border: 1px solid rgb(139, 139, 139);
+  border-radius: 20px;
+  padding: 5px;
+}
+.main-box__search {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 10px;
+}
+.search-icon {
+  width: 15px;
+  height: 15px;
+  order: -1;
+  color: rgb(139, 139, 139);
+}
+
+.search-field {
+  width: 200px;
+  border: 0;
+}
+
+.search-field:focus {
+  outline: none;
+}
+.table-row__box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.table-row__name {
+  padding: 5px 5px 0;
+  margin: 0;
+}
+.table-row__category {
+  color: rgb(139, 139, 139);
+  padding: 0 5px;
+  margin: 0;
+  font-size: small;
+}
+.MuiPagination-root {
+  margin-bottom: 10px;
+}
