@@ -1,19 +1,19 @@
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {
+  Routes,
+  Route,
+  Link,
+  Router
+} from "react-router-dom";
 import { productsLoad, getPage } from '../redux/actions';
 import Search from '../components/Search';
 import Pagination from '@mui/material/Pagination';
 import Card from './Card';
-import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import Avatar from "@mui/material/Avatar";
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-    Link
-  } from "react-router-dom";
+
 
 
 export default function Main () {
@@ -33,9 +33,14 @@ const columns = [
       width: 450,
       renderCell: (params)=>{
         console.log(params);
-        return <Link to="/card"><div className='table-row__box'> 
-        <p className='table-row__name'>{params.value.name}</p>
-        <p className='table-row__category'>{params.value.category}</p></div></Link>
+        return (
+         
+        <div className='table-row__box'> 
+        <Link to="/card">{params.value.name}</Link>
+        <p className='table-row__category'>{params.value.category}</p></div>
+        )
+        
+        
     }},
     {
       field: 'views',
@@ -110,10 +115,7 @@ const columns = [
       />
     </Box>
         </div>
-        <Routes>
-          <Route path="/card" element={<Card content={row}/>} />
-          <Route path="/" element={<Main />} />
-        </Routes>
+        
         </div>
     )
 

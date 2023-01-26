@@ -1,5 +1,6 @@
 import './App.css';
 import Main from './pages/Main';
+import Card from './pages/Card';
 import {
   BrowserRouter as Router,
   Routes,
@@ -11,7 +12,12 @@ function App() {
   return (
     <Router> <div className="App">
      <Main/>
-    </div></Router>
+     <Routes>
+           <Route path="/card" element={<Card />}/>
+           <Route path="/home" element={<Main />} />
+        </Routes>
+    </div>
+    </Router>
   );
 }
 
