@@ -11,10 +11,9 @@ import {
 function App() {
   return (
     <Router> <div className="App">
-     <Main/>
      <Routes>
            <Route path="/card" element={<Card />}/>
-           <Route path="/home" element={<Main />} />
+           <Route path="/" element={<Main />} />
         </Routes>
     </div>
     </Router>

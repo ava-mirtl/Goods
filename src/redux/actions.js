@@ -1,9 +1,16 @@
-import { PRODUCTS_LOAD, GET_PAGE } from "./types";
+import { PRODUCTS_LOAD, GET_PAGE, GET_DATA } from "./types";
 
 export function getPage(params){
     return{
         type: GET_PAGE,
         page: params
+    }
+}
+
+export function getData(params){
+    return{
+        type: GET_PAGE,
+        data: params
     }
 }
 

@@ -65,14 +65,14 @@ const columns = [
         const {mainReducer} = state; 
         return mainReducer.products;
     })
-    const row= useSelector(state=>{
-        const {mainReducer} = state; 
-        return mainReducer.row;
-    })
     const page= useSelector(state=>{
         const {mainReducer} = state; 
         return mainReducer.page;
     })
+    const rowData = useSelector(state=>{
+      const {mainReducer} = state; 
+      return mainReducer.data;
+  })
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(productsLoad());
@@ -82,7 +82,7 @@ const columns = [
         e.preventDefault();
         dispatch(getPage(page))
     }
-    
+    console.log("rowdata>>>", rowData);
 
 
     return(<div className='main-box'>
@@ -106,7 +106,7 @@ const columns = [
       page={page}
       onPageChange={()=>{page=page}}
       hideFooterPagination={true}
-        rows={row}
+        rows={products}
         columns={columns}
         pageSize={3}
         rowsPerPageOptions={[3]}

@@ -1,19 +1,21 @@
-import {  PRODUCTS_LOAD, TABLE_LOAD, GET_PAGE } from "./types";
+import {  PRODUCTS_LOAD, TABLE_LOAD, GET_PAGE, GET_DATA } from "./types";
 const initialState = {
     products: [],
     row: [],
-    page: 0
+    page: 0,
+    data: {}
 }
 
 export const mainReducer = (state = initialState, action) => {
    console.log('main reducer>', action);
      switch (action.type) {
         case PRODUCTS_LOAD:
-            const productsNew =  action.data.map(res=>{
+            const productsNew =  action.data.map((res,i)=>{
             return{
+                id: i+1,
                 img: res.image_url,
                 logo: res.logo_url,
-                name: res.name,
+                name: {name:res.name, category: res.category},
                 category: res.category,
                 views: res.views,
                 start_date: res.start_date,
@@ -25,27 +27,22 @@ export const mainReducer = (state = initialState, action) => {
                 disclaimer: res.disclaimer
             };
         })
-            case TABLE_LOAD:
-            const proNew =  action.data.map((item,i)=>{
-            return{
-                id: i+1,
-                logo: item.logo_url,
-                name: {name:item.name, category: item.category},
-                views: item.views,
-                start_date: item.start_date,
-                end_date: item.end_date,
-                key: i+1
-            }})
             return{
                 ...state,
-                row: proNew, 
-                products: productsNew
+                products: productsNew,
+                data: productsNew[1]
             }  
             case GET_PAGE:
             const newPage = action.page-1;
             return{
                 ...state,
                 page: newPage
+            } 
+            case GET_DATA:
+            const newCard = action.data;
+            return{
+                ...state,
+                data: newCard
             }  
         default: return state
     }
