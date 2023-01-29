@@ -3,8 +3,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {  Link } from "react-router-dom";
 import { productsLoad, getPage, searchData } from '../redux/actions';
 import Search from '../components/Search';
+import dayjs, {CustomParseFormat } from 'dayjs' ;
 import Pagination from '@mui/material/Pagination';
-import Card from './Card';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import Avatar from "@mui/material/Avatar";
@@ -13,7 +13,6 @@ import Avatar from "@mui/material/Avatar";
 
 export default function Main () {
   const [data, setData] = useState([]);
-  
 const columns = [
     { field: 'logo', headerName: 'Фото', width: 100,
     sortable: false,
@@ -62,26 +61,27 @@ const columns = [
         const {mainReducer} = state; 
         return mainReducer.products;
     })
-    const dateFormat=(x)=>{
-      const dateParts = x.split("/");
-      const date = new Date(dateParts[2], dateParts[0]-1, dateParts[1]);
-      const dd = date.getDate();
-      const mm = date.getMonth()+1;
-      const yyyy = date.getFullYear();
-      return (
-        `${dd<10?'0'+dd:dd}.${mm<10?'0'+mm:mm}.${yyyy}`
-      )
+    // const dateFormat=(x)=>{
+    //   const dateParts = x.split("/");
+    //   const date = new Date(dateParts[2], dateParts[0]-1, dateParts[1]);
+    //   const dd = date.getDate();
+    //   const mm = date.getMonth()+1;
+    //   const yyyy = date.getFullYear();
+    //   return (
+    //     `${dd<10?'0'+dd:dd}.${mm<10?'0'+mm:mm}.${yyyy}`
+    //   )
       
-    }
+    // }
     useEffect(() => {
       if (products && products.length) {
-        console.log("zhest", products);
-        setData(products.map(item=>({...item,
-                start_date: dateFormat(item.start_date),
-                end_date: dateFormat(item.end_date)
-        }
-          ))
-          )
+        setData(products.map(item=>{
+           return(
+          {...item,
+                start_date: dayjs(item.start_date, "MM-DD-YYYY").format("DD.MM.YYYY"),
+                end_date: dayjs(item.end_date, "MM-DD-YYYY").format("DD.MM.YYYY")
+        })
+      }))
+      
       }
     }, [products])
     const page= useSelector(state=>{
@@ -137,10 +137,15 @@ const columns = [
         }
         if (type === 'dateBegin') {
           const sorted = [...data].sort((a,b) => {
-            if (a.start_date < b.start_date) {
+            const aPartDate=a.start_date.split(".")
+            const bPartDate=b.start_date.split(".")
+            const aDate= new Date(aPartDate[2], aPartDate[1], aPartDate[0])
+            const bDate= new Date(bPartDate[2], bPartDate[1], bPartDate[0])
+
+            if (aDate < bDate) {
               return -1;
             }
-            if (a.start_date > b.start_date) {
+            if (aDate > bDate) {
               return 1;
             }
             return 0;
@@ -152,8 +157,8 @@ const columns = [
         if (type === 'dateEnd') {
           
           const sorted = [...data].sort((a,b) => {
-            const aPartDate=a.start_date.split(".")
-            const bPartDate=b.start_date.split(".")
+            const aPartDate=a.end_date.split(".")
+            const bPartDate=b.end_date.split(".")
             const aDate= new Date(aPartDate[2], aPartDate[1], aPartDate[0])
             const bDate= new Date(bPartDate[2], bPartDate[1], bPartDate[0])
 

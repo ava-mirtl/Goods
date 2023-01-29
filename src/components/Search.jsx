@@ -21,9 +21,11 @@ const products = useSelector(state=>{
 
 const handleSearch=(e)=>{
   e.preventDefault();
-  const arr = products.map(item=>item.name.name);
-  const resI= arr.findIndex(el=>el.includes(result))
+  const arr = products.map(item=>item.name.name.toLowerCase());
+  const resI= arr.findIndex((el)=>el.includes(result.toLowerCase()))
+  console.log('searh res', resI);
   dispatch(searchData(resI));
+  
 }
 
 console.log(result);
