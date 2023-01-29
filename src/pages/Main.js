@@ -6,7 +6,7 @@ import {
   Link,
   Router
 } from "react-router-dom";
-import { productsLoad, getPage } from '../redux/actions';
+import { productsLoad, getPage, searchData } from '../redux/actions';
 import Search from '../components/Search';
 import Pagination from '@mui/material/Pagination';
 import Card from './Card';
@@ -32,9 +32,7 @@ const columns = [
       headerName: 'Название',
       width: 450,
       renderCell: (params)=>{
-        console.log(params);
         return (
-         
         <div className='table-row__box'> 
         <Link to="/card">{params.value.name}</Link>
         <p className='table-row__category'>{params.value.category}</p></div>
@@ -73,6 +71,10 @@ const columns = [
       const {mainReducer} = state; 
       return mainReducer.data;
   })
+  const index = useSelector(state=>{
+    const {mainReducer} = state; 
+    return mainReducer.index;
+})
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(productsLoad());
@@ -82,8 +84,8 @@ const columns = [
         e.preventDefault();
         dispatch(getPage(page))
     }
-    console.log("rowdata>>>", rowData);
-
+    const handleShow = (e)=>{
+      dispatch(searchData(e.id-1) )}
 
     return(<div className='main-box'>
         <div className='main-box__container'>
@@ -103,6 +105,7 @@ const columns = [
 <Box sx={{ height: 300, width: '100%' }}>
 <Pagination  onChange={handleChange} count={4} variant="outlined" shape="rounded" />
       <DataGrid
+      onCellClick={handleShow}
       page={page}
       onPageChange={()=>{page=page}}
       hideFooterPagination={true}

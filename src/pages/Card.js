@@ -3,19 +3,28 @@ import {useSelector} from 'react-redux';
 import { Rating } from '@mui/material';
 import Button from '@material-ui/core/Button';
 import StarIcon from '@material-ui/icons/Star';
+import {
+  Routes,
+  Route,
+  Link,
+  Router
+} from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
 
 
 
 
 export default function Card() {
-
+const index = useSelector(state=>{
+  const {mainReducer} = state; 
+  return mainReducer.index;
+})
 
     const rowData = useSelector(state=>{
         const {mainReducer} = state; 
-        return mainReducer.data;
+        return mainReducer.products[index];
     })
-
+console.log("sgdtjkxbvmxngjkvnh",index, rowData);
     const StyledRating = withStyles({
         iconFilled: {
           color: '#211E43',
@@ -24,7 +33,7 @@ export default function Card() {
       
 
     return (<>
-      <div className='card__btn-box'><Button size="small" variant="outlined">Назад</Button></div>
+      <div className='card__btn-box'><Button size="small" variant="outlined"><Link to="/">Назад</Link></Button></div>
 
         <div className='card'>
           <div className='card__box'>

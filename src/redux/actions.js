@@ -1,4 +1,4 @@
-import { PRODUCTS_LOAD, GET_PAGE, GET_DATA } from "./types";
+import { PRODUCTS_LOAD, GET_PAGE, GET_DATA,SEARCH_REQ, SEARCH_DATA } from "./types";
 
 export function getPage(params){
     return{
@@ -14,6 +14,18 @@ export function getData(params){
     }
 }
 
+export function searchReq(params){
+    return{
+        type: SEARCH_REQ,
+        data: params
+    }
+}
+export function searchData(params){
+    return{
+        type: SEARCH_DATA,
+        index: params
+    }
+}
 
 export function productsLoad(){
     return async dispatch => {

@@ -1,9 +1,12 @@
-import {  PRODUCTS_LOAD, TABLE_LOAD, GET_PAGE, GET_DATA } from "./types";
+import {  PRODUCTS_LOAD, GET_PAGE, GET_DATA, SEARCH_REQ, SEARCH_DATA } from "./types";
 const initialState = {
     products: [],
     row: [],
     page: 0,
-    data: {}
+    data: {},
+    searchReq: "",
+    search: [],
+    index: 0
 }
 
 export const mainReducer = (state = initialState, action) => {
@@ -43,7 +46,19 @@ export const mainReducer = (state = initialState, action) => {
             return{
                 ...state,
                 data: newCard
+            }
+            case SEARCH_REQ:
+            const searchRequest = action.data;
+            return{
+                ...state,
+                searchReq: searchRequest
             }  
+            case SEARCH_DATA:
+                const index = action.index;
+                return{
+                    ...state,
+                    index: index
+                }  
         default: return state
     }
 }
