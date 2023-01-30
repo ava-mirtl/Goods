@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.72f33564.css",
-    "main.js": "/static/js/main.de64c672.js",
-    "static/media/error.jpg": "/static/media/error.16e56ce3cbfe993965ae.jpg",
-    "static/media/pngwing.com.png": "/static/media/pngwing.com.648561e618a24ea26f08.png",
-    "index.html": "/index.html",
-    "main.72f33564.css.map": "/static/css/main.72f33564.css.map",
-    "main.de64c672.js.map": "/static/js/main.de64c672.js.map"
+    "main.css": "/TP-Lab_test/static/css/main.72f33564.css",
+    "main.js": "/TP-Lab_test/static/js/main.8d915688.js",
+    "static/media/error.jpg": "/TP-Lab_test/static/media/error.16e56ce3cbfe993965ae.jpg",
+    "static/media/pngwing.com.png": "/TP-Lab_test/static/media/pngwing.com.648561e618a24ea26f08.png",
+    "index.html": "/TP-Lab_test/index.html",
+    "main.72f33564.css.map": "/TP-Lab_test/static/css/main.72f33564.css.map",
+    "main.8d915688.js.map": "/TP-Lab_test/static/js/main.8d915688.js.map"
   },
   "entrypoints": [
     "static/css/main.72f33564.css",
-    "static/js/main.de64c672.js"
+    "static/js/main.8d915688.js"
   ]
 }
