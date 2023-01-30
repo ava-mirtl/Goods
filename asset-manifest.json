@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/TP-Lab_test/static/css/main.72f33564.css",
-    "main.js": "/TP-Lab_test/static/js/main.8d915688.js",
+    "main.js": "/TP-Lab_test/static/js/main.243b4684.js",
     "static/media/error.jpg": "/TP-Lab_test/static/media/error.16e56ce3cbfe993965ae.jpg",
     "static/media/pngwing.com.png": "/TP-Lab_test/static/media/pngwing.com.648561e618a24ea26f08.png",
     "index.html": "/TP-Lab_test/index.html",
     "main.72f33564.css.map": "/TP-Lab_test/static/css/main.72f33564.css.map",
-    "main.8d915688.js.map": "/TP-Lab_test/static/js/main.8d915688.js.map"
+    "main.243b4684.js.map": "/TP-Lab_test/static/js/main.243b4684.js.map"
   },
   "entrypoints": [
     "static/css/main.72f33564.css",
-    "static/js/main.8d915688.js"
+    "static/js/main.243b4684.js"
   ]
 }
