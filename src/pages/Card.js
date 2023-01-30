@@ -2,10 +2,10 @@ import React from 'react';
 import './Card.scss'
 import {useSelector} from 'react-redux';
 import { Rating } from '@mui/material';
-import Button from '@material-ui/core/Button';
-import StarIcon from '@material-ui/icons/Star';
+import {Button} from '@mui/material';
+import StarIcon from '@mui/icons-material/Star';
 import { Link } from "react-router-dom";
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@mui/styles';
 
 
 
@@ -14,11 +14,11 @@ export default function Card() {
 
 const index = useSelector(state=>{
   return state.index; 
-})
+})//индекс товара из стора
 
 const rowData = useSelector(state=>{
         return state.products[index];
-    })
+    })//данные текущей карточки 
 
 
 const StyledRating = withStyles({
@@ -26,7 +26,8 @@ const StyledRating = withStyles({
           color: '#211E43',
         }
       })(Rating);
-      
+
+      //возвращаю карточку с проверками данных - если их нет или равны нулю, элемент не отображается
 
     return (<>
       <div className='card__btn-box'><Button size="small" variant="outlined"><Link to="/">Назад</Link></Button></div>
@@ -60,7 +61,7 @@ const StyledRating = withStyles({
         value={rowData.stars}
           icon={<StarIcon fontSize="inherit" />}
     size="large"/>    </div>}
-              {!!rowData.new_price?<><p className='card__content-newprice'>{rowData.new_price}&#8381;</p><p className='card__content-pricetext'>ЦЕНА ПО АКЦИИ</p>
+              {!!rowData.new_price?<><p className='card__content-newprice'>{rowData.new_price}&#8381;</p><p className='card__content-pricetext'>ЦЕНА ПО АКЦИИ</p> 
               </>:<span></span>}
               </div>
             </div>

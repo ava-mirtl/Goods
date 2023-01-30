@@ -14,21 +14,21 @@ import './Main.scss';
 export default function Main () {
 
 const dispatch = useDispatch();
-const [data, setData] = useState([]);
-const columns = tableColumns;
+const [data, setData] = useState([]); //переменная для хранения массива данных, которыми можно оперировать внутри компонента, больше не обращаясь к бэку
+const columns = tableColumns; //импорт колонок для data-grid
 
 
 
     const products= useSelector(state=>{
-        return state.products;
+        return state.products; //массив данных из стора
     })
 
     const pageN = useSelector(state=>{
-      return state.page;
+      return state.page; //номер страницы для пагинации
   })
 
     useEffect(()=>{
-        dispatch(productsLoad());
+        dispatch(productsLoad());//однократно при загрузке страницы кладем массив в стор
         }, [])
     useEffect(() => {
       if (products && products.length) {
@@ -41,7 +41,7 @@ const columns = tableColumns;
       }))
       
       }
-    }, [products])
+    }, [products]) //кладем в стейт измененный массив(меняем формат даты для корректного отображения)
 
     
 
@@ -49,14 +49,14 @@ const columns = tableColumns;
     function handleChange(e, page) {
         e.preventDefault();
         dispatch(getPage(page))
-    }
+    }//меняем страницы для пагинации
 
 
     const handleShow = (e)=>{
       dispatch(searchData(e.id-1) )}
+//кладем индекс выбранной карточки в стор
 
-
-    const handleSort = (type) => {
+    const handleSort = (type) => {//функция сортировки выполняет сравнение в зависимости от типа, раскрывая массив из стейта
         if (!type) {
           return
         }
@@ -89,7 +89,7 @@ const columns = tableColumns;
             const aPartDate=a.start_date.split(".")
             const bPartDate=b.start_date.split(".")
             const aDate= new Date(aPartDate[2], aPartDate[1], aPartDate[0])
-            const bDate= new Date(bPartDate[2], bPartDate[1], bPartDate[0])
+            const bDate= new Date(bPartDate[2], bPartDate[1], bPartDate[0])//создаем объект даты для сравнения
 
             if (aDate < bDate) {
               return -1;
@@ -135,7 +135,8 @@ end_date: dayjs(item.end_date, "MM-DD-YYYY").format("DD.MM.YYYY")
 setData(result)
         }
         
-      }
+      } // проверяем на value поискового инпута , если нет - масив из стора кладем в удобном формате в стейт, 
+      //если есть - получаем массив элементов подходящих по критериям поиска и кладем в стейт
 
 
 
