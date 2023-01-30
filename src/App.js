@@ -1,19 +1,23 @@
-import './App.css';
+import { useSelector } from 'react-redux';
 import Main from './pages/Main';
 import Card from './pages/Card';
+import Error from './pages/Error';
+
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 function App() {
+  const error = useSelector(state => state.error);
   return (
     <Router> <div className="App">
-     <Routes>
-           <Route path="/card" element={<Card />}/>
-           <Route path="/" element={<Main />} />
+     {error
+           &&<Error />}
+          <Routes> 
+          <Route path="/card" element={<Card />}/>
+           <Route path="/" element={<Main />}/>
         </Routes>
     </div>
     </Router>

@@ -1,31 +1,27 @@
-import React from 'react'
+import React from 'react';
+import './Card.scss'
 import {useSelector} from 'react-redux';
 import { Rating } from '@mui/material';
 import Button from '@material-ui/core/Button';
 import StarIcon from '@material-ui/icons/Star';
-import {
-  Routes,
-  Route,
-  Link,
-  Router
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
 
 
 
 
 export default function Card() {
+
 const index = useSelector(state=>{
-  const {mainReducer} = state; 
-  return mainReducer.index;
+  return state.index; 
 })
 
-    const rowData = useSelector(state=>{
-        const {mainReducer} = state; 
-        return mainReducer.products[index];
+const rowData = useSelector(state=>{
+        return state.products[index];
     })
-console.log("sgdtjkxbvmxngjkvnh",index, rowData);
-    const StyledRating = withStyles({
+
+
+const StyledRating = withStyles({
         iconFilled: {
           color: '#211E43',
         }
@@ -39,15 +35,16 @@ console.log("sgdtjkxbvmxngjkvnh",index, rowData);
           <div className='card__box'>
           <div className='card__header'>
           
-          {rowData.discount!=0?<div className='card__header-discount'><p>- {rowData.discount}%</p></div>:<span></span> }
+          {rowData.discount!==0?<div className='card__header-discount'><p>- {rowData.discount}%</p></div>:<span></span> }
           
+
             <div className='card__header-logobox'>
                 <img className='card__header-logo'src={rowData.logo}alt="logo"/>
             </div> 
             </div> 
           <div className='card__content'>
             <div className='card__content-imgbox'>
-                <img className='card__content-img'src={rowData.img} alt="item image"/>
+                <img className='card__content-img'src={rowData.img} alt="item"/>
             </div> 
             <div className='card__contentbox'>
             <h1 className='card__content-title'>{rowData.name.name}</h1>
@@ -57,7 +54,7 @@ console.log("sgdtjkxbvmxngjkvnh",index, rowData);
                 <p className='card__content-pricetext'>СТАРАЯ ЦЕНА</p>
             </div>
             <div className='card__content-newpricebox'>
-            {rowData.stars!=0&& <div className='card__content-stars'><StyledRating
+            {rowData.stars!==0&& <div className='card__content-stars'><StyledRating
         name="customized-color" 
         readOnly
         value={rowData.stars}

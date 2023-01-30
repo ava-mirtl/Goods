@@ -1,4 +1,10 @@
-import {  PRODUCTS_LOAD, GET_PAGE, GET_DATA, SEARCH_REQ, SEARCH_DATA } from "./types";
+import {  PRODUCTS_LOAD, 
+    GET_PAGE, 
+    GET_DATA, 
+    SEARCH_REQ, 
+    SEARCH_DATA, 
+    ERROR_DISPLAY_ON,
+    ERROR_DISPLAY_OFF } from "./types";
 const initialState = {
     products: [],
     row: [],
@@ -6,11 +12,11 @@ const initialState = {
     data: {},
     searchReq: "",
     search: [],
-    index: 0
+    index: 0,
+    error: null
 }
 
-export const mainReducer = (state = initialState, action) => {
-   console.log('main reducer>', action);
+export const Reducer = (state = initialState, action) => {
      switch (action.type) {
         case PRODUCTS_LOAD:
             const productsNew =  action.data.map((res,i)=>{
@@ -47,6 +53,17 @@ export const mainReducer = (state = initialState, action) => {
                 ...state,
                 data: newCard
             }
+            case ERROR_DISPLAY_ON:
+                return {
+                ...state,
+                error: action.text
+                }
+
+            case ERROR_DISPLAY_OFF:
+                return {
+                ...state,
+                error: null
+                }
             case SEARCH_REQ:
             const searchRequest = action.data;
             return{
@@ -54,7 +71,7 @@ export const mainReducer = (state = initialState, action) => {
                 searchReq: searchRequest
             }  
             case SEARCH_DATA:
-                const index = action.index;
+                const index = action.data;
                 return{
                     ...state,
                     index: index

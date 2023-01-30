@@ -1,38 +1,22 @@
-import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, {useState} from 'react';
 import icon from '../assets/pngwing.com.png';
-import Card from '../pages/Card';
-import { searchData, searchReq } from '../redux/actions';
+import './Search.scss'
 
-export default function Search() {
-  const dispatch = useDispatch()
+export default function Search({onSearch}) {
+const [value, setValue]= useState('');
+
 const handleChange=(e)=>{
-dispatch(searchReq(e.target.value))
+setValue(e.target.value)
 }
-const result = useSelector(state=>{
-  const {mainReducer} = state; 
-  return mainReducer.searchReq;
-})
-
-const products = useSelector(state=>{
-  const {mainReducer} = state; 
-  return mainReducer.products;
-})
-
-const handleSearch=(e)=>{
+const handleSearch = (e)=>{
   e.preventDefault();
-  const arr = products.map(item=>item.name.name.toLowerCase());
-  const resI= arr.findIndex((el)=>el.includes(result.toLowerCase()))
-  console.log('searh res', resI);
-  dispatch(searchData(resI));
-  
-}
+  onSearch(value);
+};
 
-console.log(result);
   return (
     <form className='search'  onSubmit={handleSearch} > 
-    <input onChange={handleChange}type="text" placeholder="Поиск..." className="search-field"/>
-    <img src={icon} alt="" className="search-icon"></img>
+    <input value = {value} onChange={handleChange}type="text" placeholder="Поиск..." className="search-field"/>
+    <img src={icon} alt="" className="search-icon"/>
     </form>
   )
 }

@@ -1,0 +1,22 @@
+$light: rgb(139, 139, 139);
+.search {
+    display: inline-flex;
+    border: 1px solid $light;
+    border-radius: 20px;
+    padding: 5px;
+  }
+  .search-icon {
+    width: 15px;
+    height: 15px;
+    order: -1;
+    color: $light;
+  }
+  
+  .search-field {
+    width: 200px;
+    border: 0;
+  }
+  
+  .search-field:focus {
+    outline: none;
+  }

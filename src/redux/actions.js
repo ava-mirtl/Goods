@@ -1,4 +1,4 @@
-import { PRODUCTS_LOAD, GET_PAGE, GET_DATA,SEARCH_REQ, SEARCH_DATA } from "./types";
+import { PRODUCTS_LOAD, GET_PAGE, SEARCH_REQ, SEARCH_DATA, ERROR_DISPLAY_OFF, ERROR_DISPLAY_ON } from "./types";
 
 export function getPage(params){
     return{
@@ -23,17 +23,41 @@ export function searchReq(params){
 export function searchData(params){
     return{
         type: SEARCH_DATA,
-        index: params
+        data: params
     }
 }
+export function errorOn(text) {
+    return dispatch => {
+      dispatch({
+        type: ERROR_DISPLAY_ON,
+        text
+      });
+  
+      setTimeout(() => {
+        dispatch(errorOff());
+      }, 3000)
+    }
+  }
+  export function errorOff() {
+    return {
+      type: ERROR_DISPLAY_OFF,
+    }
+  }
+  
 
 export function productsLoad(){
     return async dispatch => {
-        const response = await fetch ('https://files.rerotor.ru/rerotor/products.json');
+        try{ const response = await fetch ('https://files.rerotor.ru/rerotor/products.json');
         const jsonData = await response.json();
-        dispatch({
-            type: PRODUCTS_LOAD,
-            data: jsonData
-        });
+        setTimeout(() => {
+            dispatch({
+              type: PRODUCTS_LOAD,
+              data: jsonData
+            });
+          }, 1000);
+    }
+    catch(err) {
+        dispatch(errorOn('Ошибка API'));
+      }
     }
 }
