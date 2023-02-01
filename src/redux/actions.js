@@ -47,7 +47,7 @@ export function errorOn(text) {
 
 export function productsLoad(){
     return async dispatch => {
-        try{ const response = await fetch ('https://raw.githubusercontent.com/ava-mirtl/Goods/main/src/data/products.json');
+        try{ const response = await fetch ('https://files.rerotor.ru/rerotor/products.json');
         const jsonData = await response.json();
         setTimeout(() => {
             dispatch({

@@ -1,7 +1,7 @@
 {
   "name": "tp-lab",
   "version": "0.1.0",
-  "homepage": "https://ava-mirtl.github.io/TP-Lab_test",
+  "homepage": "https://ava-mirtl.github.io/Goods/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
