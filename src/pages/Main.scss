@@ -17,6 +17,20 @@ $grey:  rgb(139, 139, 139);
     height: fit-content;
     align-self: center;
   }
+
+  .main-box__link{
+    color: rgb(28, 28, 240);
+    cursor: pointer;
+    margin-left: 5px;
+    input{
+display: none;    }
+    &:hover{
+      color: black;
+    }
+  }
+  .active{
+    color: black; 
+  }
   .main-box__sort {
     display: flex;
     flex-wrap: wrap;
@@ -25,7 +39,7 @@ $grey:  rgb(139, 139, 139);
     .sort__container {
         flex-wrap: wrap;
         width: 60vw;
-        max-width: 650px;
+        max-width: 700px;
         display: flex;
         justify-content: space-between;
         margin: 10px 0;
@@ -33,6 +47,7 @@ $grey:  rgb(139, 139, 139);
   }
   .main-box__txt {
     color: $grey;
+    padding-right: 5px;
   }
 
   

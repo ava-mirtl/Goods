@@ -5,35 +5,31 @@ import {  PRODUCTS_LOAD,
     SEARCH_DATA, 
     ERROR_DISPLAY_ON,
     ERROR_DISPLAY_OFF } from "./types";
+import dayjs  from 'dayjs' ;
+
+
 const initialState = {
     products: [],
     row: [],
     page: 0,
     data: {},
     searchReq: "",
-    search: [],
     index: 0,
     error: null
 }
 
 export const Reducer = (state = initialState, action) => {
-     switch (action.type) {
+
+    switch (action.type) {
         case PRODUCTS_LOAD:
             const productsNew =  action.data.map((res,i)=>{
-            return{
+            return{...res,
                 id: i+1,
                 img: res.image_url,
                 logo: res.logo_url,
                 name: {name:res.name, category: res.category},
-                category: res.category,
-                views: res.views,
-                start_date: res.start_date,
-                end_date: res.end_date,
-                discount: res.discount,
-                stars: res.stars,
-                old_price: res.old_price,
-                new_price: res.new_price,
-                disclaimer: res.disclaimer
+                start_date: dayjs(res.start_date, "MM-DD-YYYY").format("DD.MM.YYYY"),
+                end_date: dayjs(res.end_date, "MM-DD-YYYY").format("DD.MM.YYYY"),
             };
         })
             return{
