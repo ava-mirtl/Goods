@@ -17,14 +17,12 @@ $grey:  rgb(139, 139, 139);
     height: fit-content;
     align-self: center;
   }
-  
-  label{
-    cursor: pointer;
-  }
+
 
   .main-box__link{
     color: rgb(28, 28, 240);
     margin-left: 5px;
+    cursor: pointer;
     input{
 display: none;    
 }
