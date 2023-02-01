@@ -17,7 +17,7 @@ function App() {
            &&<Error />}
           <Routes> 
           <Route path="/card" element={<Card />}/>
-           <Route path="/TP-Lab_test" element={<Main />}/>
+           <Route path="/Goods" element={<Main />}/>
            <Route path="/" element={<Main />}/>
         </Routes>
     </div>
